@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "MySkEnchanter",
+  "version": "1.15",
+  "description": "Upgrade MySK and add some features",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "background": {
+    "scripts": ["/scripts/background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "/popup/popup.html",
+    "default_icon": {
+      "48": "/image/icon2-512x512.png"
+    }
+  },
+  "icons": {
+    "48": "/image/icon2-512x512.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["/scripts/content.js"],
+      "matches": ["https://www.mysk.school/*"]
+    },
+    {
+      "js": ["/scripts/classes.js"],
+      "matches": [
+        "https://www.mysk.school/classes?ske=true*",
+        "https://www.mysk.school/en-US/classes?ske=true*"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "/image/icon2-512x512.png"
+  ]
+}
