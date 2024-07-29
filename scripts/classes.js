@@ -47,9 +47,9 @@ async function listener() {
 }
 
 window.addEventListener(
-  "load",
+  "pageshow",
   function load(e) {
-    window.removeEventListener("load", load, false);
+    window.removeEventListener("pageshow", load, false);
 
     const overlay = document.createElement("div");
     overlay.id = "loading-overlay";
@@ -73,7 +73,7 @@ window.addEventListener(
   height: 12.5px;
   background-color: #000;
   border-radius: 5px;
-  border: 1px solid #fff;
+  border-color: #fff;
   overflow: hidden;
 `;
 
@@ -82,13 +82,14 @@ window.addEventListener(
     progressBar.style.cssText = `
   width: 0%;  
   height: 100%;
-  background: linear-gradient(to right, purple, cyan);
+  background: linear-gradient(to right, purple,cyan); /* background: linear-gradient(to right, purple,cyan,blue,lime,yellow,orange,red) */;
   transition: width 1s ease;  
 `;
 
     const text = document.createElement("p");
     text.id = "text-overlay";
-    text.innerHTML = "Downloading data please wait  กำลังโหลดข้อมูลโปรดรอซักครู่";
+    text.innerHTML =
+      "Downloading data please wait  กำลังโหลดข้อมูลโปรดรอซักครู่";
     text.style.cssText = `
   color: white;
   margin-top: 10px;  
@@ -99,12 +100,12 @@ window.addEventListener(
     overlay.appendChild(text);
     document.body.appendChild(overlay);
 
-    function simulateProgress(step, interval) {
+    function simulateProgress(step,interval) {
       let progress = 0;
       const intervalId = setInterval(() => {
         progress += step;
         progressBar.style.width = `${progress}%`;
-        if (progress >= 100) {
+        if (progress === 100) {
           clearInterval(intervalId);
           fadeOutOverlay();
         }
@@ -118,10 +119,10 @@ window.addEventListener(
         setTimeout(() => {
           document.body.removeChild(overlay);
         }, 500);
+        listener();
       }, 1000);
     }
-
-    simulateProgress(10, 100);
+    simulateProgress(10,100);
   },
   false
 );
