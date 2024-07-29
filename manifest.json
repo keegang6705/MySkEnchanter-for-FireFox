@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
   "name": "MySkEnchanter",
-  "version": "2024.2.0f-firefox",
+  "version": "2.0",
+  "version_name":"2024.7.29-firefox",
   "description": "Upgrade MySK and add some features",
   "permissions": [
     "https://ykqqepbodqjhiwfjcvxe.supabase.co/",
